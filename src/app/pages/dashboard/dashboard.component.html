@@ -1,0 +1,12 @@
+<h1>Dashboard Page</h1>
+<hr />
+<p>
+  Last Data Sync at: <b>{{ (data$ | async)?.lastUpdate | date : "medium" }}</b>
+</p>
+<p>
+  Polling interval:
+  <b>{{ (data$ | async)?.interval | date : "s" }} second(s)</b>
+</p>
+<p>
+  Polling Strategy: <b>{{ (data$ | async)?.pollingStrategy }}</b>
+</p>

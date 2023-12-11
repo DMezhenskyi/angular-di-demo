@@ -1,0 +1,13 @@
+<h1>{{ (state$ | async)?.title }}</h1>
+<p>Parent Component Title: <b>TO DO</b></p>
+<hr />
+<p>
+  Last Data Sync at: <b>{{ (data$ | async)?.lastUpdate | date : "medium" }}</b>
+</p>
+<p>
+  Polling interval:
+  <b>{{ (data$ | async)?.interval | date : "s" }} second(s)</b>
+</p>
+<p>
+  Polling Strategy: <b>{{ (data$ | async)?.pollingStrategy }}</b>
+</p>
