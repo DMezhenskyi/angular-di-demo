@@ -1,8 +1,8 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = 3000;
-const throwRandomlyErrors = false;
+const throwRandomlyErrors = true;
 
 // Enable CORS for all routes
 app.use(cors());
@@ -18,15 +18,16 @@ app.use("/resolveAppConfig", (req, res, next) => {
 });
 
 // GET route that randomly returns 'default' or 'advanced'
-app.get('/resolveAppConfig', (req, res) => {
-    const strategies = ['default', 'advanced'];
-    const selectedStrategy = strategies[Math.floor(Math.random() * strategies.length)];
-    res.send({
-      pollingStrategy: selectedStrategy,
-      defaultInterval: 1000
-    });
+app.get("/resolveAppConfig", (req, res) => {
+  const strategies = ["default", "advanced"];
+  const selectedStrategy =
+    strategies[Math.floor(Math.random() * strategies.length)];
+  res.send({
+    pollingStrategy: selectedStrategy,
+    defaultInterval: 1000,
+  });
 });
 
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { interval, map } from 'rxjs';
-import { POLLING_INTERVAL } from '../tokens';
 import { PollingService } from '../models';
+import { POLLING_INTERVAL } from '../tokens';
 
 @Injectable({
   providedIn: 'root',
