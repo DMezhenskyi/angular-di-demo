@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { BehaviorSubject } from 'rxjs';
 import { State } from './models';
 import { AsyncPipe } from '@angular/common';
+import { StateService } from './core/state.service';
 
 @Component({
   selector: 'app-root',
@@ -49,7 +50,15 @@ import { AsyncPipe } from '@angular/common';
     </main>
   `,
   styleUrl: './app.component.scss',
+  providers: [StateService],
 })
 export class AppComponent {
-  state$ = new BehaviorSubject<State>({ title: 'Angular DI Demo' });
+  stateService = inject(StateService, { self: true });
+  state$ = this.stateService.state$;
+
+  ngOnInit() {
+    this.stateService.setState({
+      title: 'Angular DI',
+    });
+  }
 }

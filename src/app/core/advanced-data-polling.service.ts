@@ -1,17 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { map, timer } from 'rxjs';
+import { POLLING_INTERVAL } from '../tokens';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdvancedDataPollingService {
-  #interval = 1000;
+  #interval = inject(POLLING_INTERVAL);
   check$ = timer(0, this.#interval).pipe(
     map(() => ({
       lastUpdate: new Date(),
       pollingStrategy: 'advanced',
       interval: this.#interval,
-      data: { /** dummy placeholder */ }
+      data: {
+        /** dummy placeholder */
+      },
     }))
-  )
+  );
 }
